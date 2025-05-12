@@ -1,15 +1,14 @@
-// Calc class definition, has the var's and functions
+// The main Calculator
 
 #pragma once
 
-#include "Button.h"
+#include "Button.h"                     // Include our button class
 
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>            // SFML Libraries
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
-
 #include <vector>
 
 class Calc {
@@ -20,9 +19,8 @@ class Calc {
         sf::VideoMode videomode;        // sets our h, w, full screen, title bar, etc.
         sf::Event ev;                   // checks for events on the pc, clicks, push, etc.
 
-        // Font and text
-        sf::Font font;                  // This font is to be used for the buttons and etc.
-        sf::Texture buttonTexture;
+        // Font
+        sf::Font font;
 
         // Colors
         sf::Color backgroundColor;
@@ -31,14 +29,15 @@ class Calc {
         sf::Color buttonAboveTextColor;
         sf::Color outputColor;
 
-        // Stores our buttons
-        std::vector<Button> buttons;
+        // Button
+        sf::Texture buttonTexture;      // This is the png file for the rounded rectangle, Button class then puts more into this
+        std::vector<Button> buttons;    // Stores mutliple buttons
         
         // Init Functions
         void initVariables();           // set up our var's to be used later in the program
         void initWindow();              // set the application window
         void initFont();
-        void initButtonTexture();        // SFML doesn't have a native rounded rectangle so we're piecing it together with an image of one
+        void initButtonTexture();       // Go to the Button class...
         void initButtons();
 
     // anywhere can access this info
@@ -50,7 +49,7 @@ class Calc {
         const bool running() const;
 
         // Functions
-        void pollEvents();              // Checking to see if we have a pc event
+        void pollEvents();              // Checking to see if we have a pc event like ESC, key stroke, etc.
         
         void update();                  // Changing things in the backend, will then be pushed to front with render
         

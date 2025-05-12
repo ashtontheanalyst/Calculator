@@ -44,11 +44,43 @@ void Calc::initButtonTexture() {
 }
 
 
+// BUTTONS, from here look at Button.h and Button.cpp
 void Calc::initButtons() {
-    buttons.emplace_back("##", font, buttonTexture, 10.f, 5.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("3", font, buttonTexture, 100.f, 50.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("+", font, buttonTexture, 200.f, 100.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("1", font, buttonTexture, 13.f, 567.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("2", font, buttonTexture, 96.f, 567.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("3", font, buttonTexture, 179.f, 567.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("4", font, buttonTexture, 262.f, 567.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("5", font, buttonTexture, 345.f, 567.f, buttonColor, buttonTextColor);
 
+    buttons.emplace_back("1", font, buttonTexture, 13.f, 494.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("2", font, buttonTexture, 96.f, 494.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("3", font, buttonTexture, 179.f, 494.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("4", font, buttonTexture, 262.f, 494.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("5", font, buttonTexture, 345.f, 494.f, buttonColor, buttonTextColor);
+
+    buttons.emplace_back("1", font, buttonTexture, 13.f, 421.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("2", font, buttonTexture, 96.f, 421.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("3", font, buttonTexture, 179.f, 421.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("4", font, buttonTexture, 262.f, 421.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("5", font, buttonTexture, 345.f, 421.f, buttonColor, buttonTextColor);
+
+    buttons.emplace_back("1", font, buttonTexture, 13.f, 348.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("2", font, buttonTexture, 96.f, 348.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("3", font, buttonTexture, 179.f, 348.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("4", font, buttonTexture, 262.f, 348.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("5", font, buttonTexture, 345.f, 348.f, buttonColor, buttonTextColor);
+
+    buttons.emplace_back("1", font, buttonTexture, 13.f, 275.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("2", font, buttonTexture, 96.f, 275.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("3", font, buttonTexture, 179.f, 275.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("4", font, buttonTexture, 262.f, 275.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("5", font, buttonTexture, 345.f, 275.f, buttonColor, buttonTextColor);
+
+    buttons.emplace_back("1", font, buttonTexture, 13.f, 202.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("2", font, buttonTexture, 96.f, 202.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("3", font, buttonTexture, 179.f, 202.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("4", font, buttonTexture, 262.f, 202.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("5", font, buttonTexture, 345.f, 202.f, buttonColor, buttonTextColor);
 }
 
 
@@ -100,16 +132,19 @@ void Calc::pollEvents() {
 }
 
 
+// This is our backend logic where the changes happen value wise
 void Calc::update() {
     pollEvents();
 }
 
 
+// This taked those backend changes and pushes them to the screen
 void Calc::render() {
-    window->clear(sf::Color(backgroundColor));
+    window->clear(sf::Color(backgroundColor));  // between frames put a black screen
 
-    for (auto& button : buttons) {
-        button.render(*window);
+    // Render the buttons from the Button class and it's render function
+    for (int i = 0; i < buttons.size(); i++) {
+        buttons[i].render(*window);
     }
 
     window->display();

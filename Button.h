@@ -1,4 +1,4 @@
-// This is the button class
+// Button class
 
 #pragma once
 
@@ -22,5 +22,6 @@ class Button {
         Button(const std::string &text, sf::Font &font, sf::Texture &texture,
                float x, float y, sf::Color buttonColor, sf::Color buttonTextColor);
         
-        void render(sf::RenderTarget &target);          // Renders the button, puts it on screen
+        // Renders the button, puts it on screen
+        void render(sf::RenderTarget &target);
 };
