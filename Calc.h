@@ -2,11 +2,15 @@
 
 #pragma once
 
+#include "Button.h"
+
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
+
+#include <vector>
 
 class Calc {
     // internal details
@@ -16,6 +20,10 @@ class Calc {
         sf::VideoMode videomode;        // sets our h, w, full screen, title bar, etc.
         sf::Event ev;                   // checks for events on the pc, clicks, push, etc.
 
+        // Font and text
+        sf::Font font;                  // This font is to be used for the buttons and etc.
+        sf::Texture buttonTexture;
+
         // Colors
         sf::Color backgroundColor;
         sf::Color buttonColor;
@@ -23,16 +31,15 @@ class Calc {
         sf::Color buttonAboveTextColor;
         sf::Color outputColor;
 
-        // Rounded Rectangle Buttons
-        sf::Texture recTex;
-        sf::Sprite roundedRec;
-        int xrr;                        // initial rounded rec x pos. for testing
-        int yrr;                        // same for y pos.
+        // Stores our buttons
+        std::vector<Button> buttons;
         
         // Init Functions
         void initVariables();           // set up our var's to be used later in the program
         void initWindow();              // set the application window
-        void initRoundedRec();          // SFML doesn't have a native rounded rectangle so we're piecing it together with an image of one
+        void initFont();
+        void initButtonTexture();        // SFML doesn't have a native rounded rectangle so we're piecing it together with an image of one
+        void initButtons();
 
     // anywhere can access this info
     public:
@@ -44,7 +51,8 @@ class Calc {
 
         // Functions
         void pollEvents();              // Checking to see if we have a pc event
+        
         void update();                  // Changing things in the backend, will then be pushed to front with render
+        
         void render();                  // Pushes changes from backend to the screen
-
 };
