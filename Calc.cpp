@@ -11,6 +11,9 @@ void Calc::initVariables() {
     buttonTextColor = sf::Color(149, 243, 248, 255);
     buttonAboveTextColor = sf::Color(255, 255, 0, 255);
     outputColor = sf::Color(148, 140, 123, 255);
+
+    black = sf::Color(0, 0, 0, 255);
+    white = sf::Color(255, 255, 255, 255);
 }
         
 
@@ -47,46 +50,46 @@ void Calc::initButtonTexture() {
 // BUTTONS, from here look at Button.h and Button.cpp
 void Calc::initButtons() {
     // Bottom Row
-    buttons.emplace_back("0", font, buttonTexture, 13.f, 567.f, buttonColor, buttonTextColor);      // first button, on far left
-    buttons.emplace_back(".", font, buttonTexture, 96.f, 567.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("(-)", font, buttonTexture, 179.f, 567.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("#", font, buttonTexture, 262.f, 567.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("#", font, buttonTexture, 345.f, 567.f, buttonColor, buttonTextColor);     // last button, on far right
+    buttons.emplace_back("0", font, buttonTexture, 13.f, 567.f, black, white);      // first button, on far left
+    buttons.emplace_back(".", font, buttonTexture, 96.f, 567.f, black, white);
+    buttons.emplace_back("( - )", font, buttonTexture, 179.f, 567.f, black, white);
+    buttons.emplace_back("+", font, buttonTexture, 262.f, 567.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("[-EQL-]", font, buttonTexture, 345.f, 567.f, white, black);     // last button, on far right
 
     // Second row from bottom
-    buttons.emplace_back("#", font, buttonTexture, 13.f, 494.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("#", font, buttonTexture, 96.f, 494.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("#", font, buttonTexture, 179.f, 494.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("#", font, buttonTexture, 262.f, 494.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("#", font, buttonTexture, 345.f, 494.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("1", font, buttonTexture, 13.f, 494.f, black, white);
+    buttons.emplace_back("2", font, buttonTexture, 96.f, 494.f, black, white);
+    buttons.emplace_back("3", font, buttonTexture, 179.f, 494.f, black, white);
+    buttons.emplace_back("-", font, buttonTexture, 262.f, 494.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("Ans", font, buttonTexture, 345.f, 494.f, buttonColor, buttonTextColor);
 
     // Third from bottom
-    buttons.emplace_back("#", font, buttonTexture, 13.f, 421.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("#", font, buttonTexture, 96.f, 421.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("#", font, buttonTexture, 179.f, 421.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("#", font, buttonTexture, 262.f, 421.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("#", font, buttonTexture, 345.f, 421.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("4", font, buttonTexture, 13.f, 421.f, black, white);
+    buttons.emplace_back("5", font, buttonTexture, 96.f, 421.f, black, white);
+    buttons.emplace_back("6", font, buttonTexture, 179.f, 421.f, black, white);
+    buttons.emplace_back("x", font, buttonTexture, 262.f, 421.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("Del", font, buttonTexture, 345.f, 421.f, buttonColor, buttonTextColor);
 
     // Fourth from bottom
-    buttons.emplace_back("#", font, buttonTexture, 13.f, 348.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("#", font, buttonTexture, 96.f, 348.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("#", font, buttonTexture, 179.f, 348.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("#", font, buttonTexture, 262.f, 348.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("#", font, buttonTexture, 345.f, 348.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("7", font, buttonTexture, 13.f, 348.f, black, white);
+    buttons.emplace_back("8", font, buttonTexture, 96.f, 348.f, black, white);
+    buttons.emplace_back("9", font, buttonTexture, 179.f, 348.f, black, white);
+    buttons.emplace_back("/", font, buttonTexture, 262.f, 348.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("Clear", font, buttonTexture, 345.f, 348.f, buttonColor, buttonTextColor);
 
     // Fifth from bottom
-    buttons.emplace_back("#", font, buttonTexture, 13.f, 275.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("#", font, buttonTexture, 96.f, 275.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("#", font, buttonTexture, 179.f, 275.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("#", font, buttonTexture, 262.f, 275.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("#", font, buttonTexture, 345.f, 275.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("sin", font, buttonTexture, 13.f, 275.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("cos", font, buttonTexture, 96.f, 275.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("tan", font, buttonTexture, 179.f, 275.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("log", font, buttonTexture, 262.f, 275.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("ln", font, buttonTexture, 345.f, 275.f, buttonColor, buttonTextColor);
 
     // Top row, sixth from bottom
-    buttons.emplace_back("#", font, buttonTexture, 13.f, 202.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("#", font, buttonTexture, 96.f, 202.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("#", font, buttonTexture, 179.f, 202.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("#", font, buttonTexture, 262.f, 202.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("#", font, buttonTexture, 345.f, 202.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("sq", font, buttonTexture, 13.f, 202.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("pow", font, buttonTexture, 96.f, 202.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("sqrt", font, buttonTexture, 179.f, 202.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("abs", font, buttonTexture, 262.f, 202.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("hash", font, buttonTexture, 345.f, 202.f, buttonColor, buttonTextColor);
 }
 
 

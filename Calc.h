@@ -28,6 +28,8 @@ class Calc {
         sf::Color buttonTextColor;
         sf::Color buttonAboveTextColor;
         sf::Color outputColor;
+        sf::Color black;
+        sf::Color white;
 
         // Button
         sf::Texture buttonTexture;      // This is the png file for the rounded rectangle, Button class then puts more into this
