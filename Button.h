@@ -27,6 +27,6 @@ class Button {
 
         // Accessors
         sf::Color getColor() const;
-        sf::FloatRect getGlobalBounds() const;
+        std::string getValue() const;
         bool clicked(sf::Vector2f mousePos) const;
 };

@@ -56,8 +56,7 @@ class Calc {
         const bool running() const;
         
         // Checker from the Button class (button.h and .cpp)
-        void checkColor();              // check the button color
-        void checkBoundary();           // getGlobalBounds() on buttons[i]
+        void getColor();                // get the button color
 
         // Functions
         void pollEvents();              // Checking to see if we have a pc event like ESC, key stroke, etc.

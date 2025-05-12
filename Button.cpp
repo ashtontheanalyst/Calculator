@@ -42,9 +42,9 @@ sf::Color Button::getColor() const {
 }
 
 
-// Boundary accessor
-sf::FloatRect Button::getGlobalBounds() const {
-    return rect.getGlobalBounds();
+// Get the button value like 1, Abs, EQL, etc.
+std::string Button::getValue() const {
+    return Button::label.getString();
 }
 
 

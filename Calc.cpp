@@ -122,7 +122,7 @@ const bool Calc::running() const {
 
 
 // Checking (getting) the button color
-void Calc::checkColor() {
+void Calc::getColor() {
     // This is the accessor function from Button.h
     sf::Color color = buttons[1].getColor();
 
@@ -130,19 +130,6 @@ void Calc::checkColor() {
     //std::cout << (int)color.r << " ";
     //std::cout << (int)color.g << " ";
     //std::cout << (int)color.b << '\n';
-}
-
-
-// Checking (getting) the boundary
-// Shoukd this actually return the rect?
-void Calc::checkBoundary() {
-    sf::FloatRect bounds = buttons[1].getGlobalBounds();
-
-    //std::cout << bounds.left << " " << bounds.width << '\n';
-    //std::cout << bounds.top << " " << bounds.height << '\n';
-
-    bool checker = buttons[0].clicked(mousePos);
-    std::cout << checker << '\n';
 }
 
 
@@ -180,17 +167,17 @@ void Calc::buttonClick() {
         // Making sure button is not being held
         if (mouseHeld == false) {
             mouseHeld = true;
-            
-            // Do this...
-            checkColor();
 
-            // Check for click on button here
-            checkBoundary();
-
-            // Run through the list
+            // Run through the list of buttons and compare it to the clicked mouse pos.
+            // If the mouse is clicking a button, then do this...
             for (int i = 0; i < buttons.size(); i++) {
+                // .clicked() is in Button.h
                 if (buttons[i].clicked(mousePos)) {
-                    std::cout << "Clicked" << '\n';
+
+                    // get the value from the Buttons class
+                    std::string value = buttons[i].getValue();
+
+                    std::cout << "Clicked: " << value << '\n';
                 }
             }
         }
