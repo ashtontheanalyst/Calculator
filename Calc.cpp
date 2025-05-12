@@ -8,10 +8,10 @@ void Calc::initVariables() {
 
     backgroundColor = sf::Color(44, 55, 68, 255);
     buttonColor = sf::Color(65, 79, 101, 255);
+    numButtonColor = sf::Color(18, 25, 32, 255);
     buttonTextColor = sf::Color(149, 243, 248, 255);
     buttonAboveTextColor = sf::Color(255, 255, 0, 255);
     outputColor = sf::Color(148, 140, 123, 255);
-
     black = sf::Color(0, 0, 0, 255);
     white = sf::Color(255, 255, 255, 255);
 }
@@ -29,10 +29,18 @@ void Calc::initWindow() {
 }
 
 
-// Initialize/load in the font ttf
-void Calc::initFont() {
-    if (!font.loadFromFile("/home/dementus/code/cpp/Calculator/RobotoCondensed-VariableFont_wght.ttf")) {
-        std::cout << "ERROR: Failure to load in font ttf file..." << '\n';
+// Initialize/load in the font ttf for buttons
+void Calc::initButtonFont() {
+    if (!buttonFont.loadFromFile("/home/dementus/code/cpp/Calculator/Assets/RobotoCondensed-VariableFont_wght.ttf")) {
+        std::cout << "ERROR: Failure to load in font ttf file for buttons..." << '\n';
+    }
+}
+
+
+// Output font initialization
+void Calc::initOutputFont() {
+    if (!outputFont.loadFromFile("/home/dementus/code/cpp/Calculator/Assets/digital-7.monoitalic.ttf")) {
+        std::cout << "ERROR: Failure to load in font ttf file for screen/output..." << '\n';
     }
 }
 
@@ -41,8 +49,8 @@ void Calc::initFont() {
 void Calc::initButtonTexture() {
     // Making sure it loads in, if not shoot an error
     // png from: https://www.iconsdb.com/white-icons/rounded-rectangle-icon.html
-    if (!buttonTexture.loadFromFile("roundedRectangle.png")) {
-        std::cout << "ERROR: Couldn't load in rounded rectangle object file..." << '\n';
+    if (!buttonTexture.loadFromFile("Assets/roundedRectangle.png")) {
+        std::cout << "ERROR: Couldn't load in rounded rectangle object file for buttons..." << '\n';
     }
 }
 
@@ -50,46 +58,71 @@ void Calc::initButtonTexture() {
 // BUTTONS, from here look at Button.h and Button.cpp
 void Calc::initButtons() {
     // Bottom Row
-    buttons.emplace_back("0", font, buttonTexture, 13.f, 567.f, black, white);                      // first button, on far left
-    buttons.emplace_back(".", font, buttonTexture, 96.f, 567.f, black, white);
-    buttons.emplace_back("( - )", font, buttonTexture, 179.f, 567.f, black, white);
-    buttons.emplace_back("+", font, buttonTexture, 262.f, 567.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("[-EQL-]", font, buttonTexture, 345.f, 567.f, white, black);               // last button, on far right
+    buttons.emplace_back("0", buttonFont, buttonTexture, 13.f, 567.f, numButtonColor, white);             // first button, on far left
+    buttons.emplace_back(".", buttonFont, buttonTexture, 96.f, 567.f, numButtonColor, white);
+    buttons.emplace_back("( - )", buttonFont, buttonTexture, 179.f, 567.f, numButtonColor, white);
+    buttons.emplace_back("+", buttonFont, buttonTexture, 262.f, 567.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("[-EQL-]", buttonFont, buttonTexture, 345.f, 567.f, white, black);               // last button, on far right
 
     // Second row from bottom
-    buttons.emplace_back("1", font, buttonTexture, 13.f, 494.f, black, white);
-    buttons.emplace_back("2", font, buttonTexture, 96.f, 494.f, black, white);
-    buttons.emplace_back("3", font, buttonTexture, 179.f, 494.f, black, white);
-    buttons.emplace_back("-", font, buttonTexture, 262.f, 494.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("Ans", font, buttonTexture, 345.f, 494.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("1", buttonFont, buttonTexture, 13.f, 494.f, numButtonColor, white);
+    buttons.emplace_back("2", buttonFont, buttonTexture, 96.f, 494.f, numButtonColor, white);
+    buttons.emplace_back("3", buttonFont, buttonTexture, 179.f, 494.f, numButtonColor, white);
+    buttons.emplace_back("-", buttonFont, buttonTexture, 262.f, 494.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("Ans", buttonFont, buttonTexture, 345.f, 494.f, buttonColor, buttonTextColor);
 
     // Third from bottom
-    buttons.emplace_back("4", font, buttonTexture, 13.f, 421.f, black, white);
-    buttons.emplace_back("5", font, buttonTexture, 96.f, 421.f, black, white);
-    buttons.emplace_back("6", font, buttonTexture, 179.f, 421.f, black, white);
-    buttons.emplace_back("x", font, buttonTexture, 262.f, 421.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("Del", font, buttonTexture, 345.f, 421.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("4", buttonFont, buttonTexture, 13.f, 421.f, numButtonColor, white);
+    buttons.emplace_back("5", buttonFont, buttonTexture, 96.f, 421.f, numButtonColor, white);
+    buttons.emplace_back("6", buttonFont, buttonTexture, 179.f, 421.f, numButtonColor, white);
+    buttons.emplace_back("x", buttonFont, buttonTexture, 262.f, 421.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("Del", buttonFont, buttonTexture, 345.f, 421.f, buttonColor, buttonTextColor);
 
     // Fourth from bottom
-    buttons.emplace_back("7", font, buttonTexture, 13.f, 348.f, black, white);
-    buttons.emplace_back("8", font, buttonTexture, 96.f, 348.f, black, white);
-    buttons.emplace_back("9", font, buttonTexture, 179.f, 348.f, black, white);
-    buttons.emplace_back("/", font, buttonTexture, 262.f, 348.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("Clear", font, buttonTexture, 345.f, 348.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("7", buttonFont, buttonTexture, 13.f, 348.f, numButtonColor, white);
+    buttons.emplace_back("8", buttonFont, buttonTexture, 96.f, 348.f, numButtonColor, white);
+    buttons.emplace_back("9", buttonFont, buttonTexture, 179.f, 348.f, numButtonColor, white);
+    buttons.emplace_back("/", buttonFont, buttonTexture, 262.f, 348.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("Clear", buttonFont, buttonTexture, 345.f, 348.f, buttonColor, buttonTextColor);
 
     // Fifth from bottom
-    buttons.emplace_back("sin", font, buttonTexture, 13.f, 275.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("cos", font, buttonTexture, 96.f, 275.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("tan", font, buttonTexture, 179.f, 275.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("log", font, buttonTexture, 262.f, 275.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("ln", font, buttonTexture, 345.f, 275.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("sin", buttonFont, buttonTexture, 13.f, 275.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("cos", buttonFont, buttonTexture, 96.f, 275.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("tan", buttonFont, buttonTexture, 179.f, 275.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("log", buttonFont, buttonTexture, 262.f, 275.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("ln", buttonFont, buttonTexture, 345.f, 275.f, buttonColor, buttonTextColor);
 
     // Top row, sixth from bottom
-    buttons.emplace_back("sq", font, buttonTexture, 13.f, 202.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("pow", font, buttonTexture, 96.f, 202.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("sqrt", font, buttonTexture, 179.f, 202.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("abs", font, buttonTexture, 262.f, 202.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("hash", font, buttonTexture, 345.f, 202.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("sq", buttonFont, buttonTexture, 13.f, 202.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("pow", buttonFont, buttonTexture, 96.f, 202.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("sqrt", buttonFont, buttonTexture, 179.f, 202.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("abs", buttonFont, buttonTexture, 262.f, 202.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("hash", buttonFont, buttonTexture, 345.f, 202.f, buttonColor, buttonTextColor);
+}
+
+
+// Initialize our screen
+void Calc::initScreenTexture() {
+    if (!screenTexture.loadFromFile("Assets/screenRectangle.png")) {
+        std::cout << "ERROR: Couldn't load in rounded rectangle object file for screen..." << '\n';
+    }
+}
+
+
+// Build out the screen base
+void Calc::initScreen() {
+    // The screen itself, the background
+    screen.setTexture(screenTexture);
+    screen.setColor(black);
+    screen.setScale(1.0f, 0.55f);   // Turns the png from 256x256 to 399x126
+    screen.setPosition(13.0, -7.0);
+
+    // The text on the screen
+    output.setFont(outputFont);
+    output.setPosition(sf::Vector2f(25.f, 0.f));    // There's already 20px of padding on the y-axis, so the actual pos. is (25, 20ish)
+    output.setCharacterSize(60);
+    output.setFillColor(outputColor);
+    output.setString("Welcome Nerd!");              // Intro message
 }
 
 
@@ -103,9 +136,12 @@ Calc::Calc() {
     // Call out initialization functions to build the class
     initVariables();
     initWindow();
-    initFont();
+    initButtonFont();
+    initOutputFont();
     initButtonTexture();
     initButtons();
+    initScreenTexture();
+    initScreen();
 }
 
 
@@ -177,7 +213,8 @@ void Calc::buttonClick() {
                     // get the value from the Buttons class
                     std::string value = buttons[i].getValue();
 
-                    std::cout << "Clicked: " << value << '\n';
+                    // Put that value into the update screen function
+                    updateScreen(value);
                 }
             }
         }
@@ -185,6 +222,12 @@ void Calc::buttonClick() {
     else {
         mouseHeld = false;
     }
+}
+
+
+// This will put the passed argument onto the screen, the value in the button
+void Calc::updateScreen(std::string value) {
+    output.setString(value);
 }
 
 
@@ -196,6 +239,13 @@ void Calc::update() {
 }
 
 
+// Render the screen and text
+void Calc::renderScreen(sf::RenderTarget &target) {
+    target.draw(screen);
+    target.draw(output);
+}
+
+
 // This taked those backend changes and pushes them to the screen
 void Calc::render() {
     window->clear(sf::Color(backgroundColor));  // between frames put a black screen
@@ -204,6 +254,9 @@ void Calc::render() {
     for (int i = 0; i < buttons.size(); i++) {
         buttons[i].render(*window);
     }
+
+    // Render the screen
+    renderScreen(*window);
 
     window->display();
 }
