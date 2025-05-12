@@ -34,3 +34,21 @@ void Button::render(sf::RenderTarget &target) {
     target.draw(rect);
     target.draw(label);
 }
+
+
+// Get color accessor
+sf::Color Button::getColor() const {
+    return rect.getColor();
+}
+
+
+// Boundary accessor
+sf::FloatRect Button::getGlobalBounds() const {
+    return rect.getGlobalBounds();
+}
+
+
+// Clicked means that the mouse position is in the button when a click happens
+bool Button::clicked(sf::Vector2f mousePos) const {
+    return rect.getGlobalBounds().contains(mousePos);
+}

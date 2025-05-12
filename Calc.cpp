@@ -50,11 +50,11 @@ void Calc::initButtonTexture() {
 // BUTTONS, from here look at Button.h and Button.cpp
 void Calc::initButtons() {
     // Bottom Row
-    buttons.emplace_back("0", font, buttonTexture, 13.f, 567.f, black, white);      // first button, on far left
+    buttons.emplace_back("0", font, buttonTexture, 13.f, 567.f, black, white);                      // first button, on far left
     buttons.emplace_back(".", font, buttonTexture, 96.f, 567.f, black, white);
     buttons.emplace_back("( - )", font, buttonTexture, 179.f, 567.f, black, white);
     buttons.emplace_back("+", font, buttonTexture, 262.f, 567.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("[-EQL-]", font, buttonTexture, 345.f, 567.f, white, black);     // last button, on far right
+    buttons.emplace_back("[-EQL-]", font, buttonTexture, 345.f, 567.f, white, black);               // last button, on far right
 
     // Second row from bottom
     buttons.emplace_back("1", font, buttonTexture, 13.f, 494.f, black, white);
@@ -121,6 +121,31 @@ const bool Calc::running() const {
 }
 
 
+// Checking (getting) the button color
+void Calc::checkColor() {
+    // This is the accessor function from Button.h
+    sf::Color color = buttons[1].getColor();
+
+    // Output for now, gives us an idea of what's going on
+    //std::cout << (int)color.r << " ";
+    //std::cout << (int)color.g << " ";
+    //std::cout << (int)color.b << '\n';
+}
+
+
+// Checking (getting) the boundary
+// Shoukd this actually return the rect?
+void Calc::checkBoundary() {
+    sf::FloatRect bounds = buttons[1].getGlobalBounds();
+
+    //std::cout << bounds.left << " " << bounds.width << '\n';
+    //std::cout << bounds.top << " " << bounds.height << '\n';
+
+    bool checker = buttons[0].clicked(mousePos);
+    std::cout << checker << '\n';
+}
+
+
 // Checking for inputs from computer, actions (for now just 'ESC' and close button)
 void Calc::pollEvents() {
     while(window->pollEvent(ev)) {
@@ -135,8 +160,43 @@ void Calc::pollEvents() {
                 if (ev.key.code == sf::Keyboard::Escape) {
                     window->close();
                 }
-            break;
+                break;
         }
+    }
+}
+
+
+// Get mouse pos coords
+void Calc::getMousePos() {
+    mousePosRaw = sf::Mouse::getPosition(*window);
+    mousePos = window->mapPixelToCoords(mousePosRaw);
+}
+
+
+// flip button color if button has been clicked
+void Calc::buttonClick() {
+    // If left click...
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+        // Making sure button is not being held
+        if (mouseHeld == false) {
+            mouseHeld = true;
+            
+            // Do this...
+            checkColor();
+
+            // Check for click on button here
+            checkBoundary();
+
+            // Run through the list
+            for (int i = 0; i < buttons.size(); i++) {
+                if (buttons[i].clicked(mousePos)) {
+                    std::cout << "Clicked" << '\n';
+                }
+            }
+        }
+    }
+    else {
+        mouseHeld = false;
     }
 }
 
@@ -144,6 +204,8 @@ void Calc::pollEvents() {
 // This is our backend logic where the changes happen value wise
 void Calc::update() {
     pollEvents();
+    getMousePos();
+    buttonClick();
 }
 
 

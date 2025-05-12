@@ -24,4 +24,9 @@ class Button {
         
         // Renders the button, puts it on screen
         void render(sf::RenderTarget &target);
+
+        // Accessors
+        sf::Color getColor() const;
+        sf::FloatRect getGlobalBounds() const;
+        bool clicked(sf::Vector2f mousePos) const;
 };
