@@ -41,19 +41,25 @@ class Calc {
         sf::Sprite screen;
         sf::Texture screenTexture;              // Same png file for the buttons but it'll be screen sized
         sf::Text output;                        // On screen text
+        std::string runningInput;               // This is the full input like "3*2/3.0928"
+        std::string input;                      // This is the individual user input string like like "1" or "*"
 
         // Mouse
         sf::Vector2i mousePosRaw;               // Raw position
         sf::Vector2f mousePos;                  // Converted to floats
         bool mouseHeld;                         // bool for if the left click is being held
+        bool keyHeld;                           // bool for if a key is being held
         
         // Init Functions
         void initVariables();                   // set up our var's to be used later in the program
         void initWindow();                      // set the application window
+        
         void initButtonFont();
         void initOutputFont();
+        
         void initButtonTexture();               // Go to the Button class...
         void initButtons();
+        
         void initScreenTexture();
         void initScreen();
 
@@ -66,13 +72,15 @@ class Calc {
         const bool running() const;
         
         // Checker from the Button class (button.h and .cpp)
-        void getColor();                        // get the button color
+        void getColor();                        // get the button color (to be used later for switching button color on click or press)
 
         // Functions
-        void pollEvents();                      // Checking to see if we have a pc event like ESC, key stroke, etc.
-        void getMousePos();                     // Getting the coords of the mouse for later use
-        void buttonClick();                     // Checks to see if one of the buttons has been clicked (then flips color combo)
-      
+        void pollEvents();                      // Checking to see if we have a pc event like ESC or close
+        void getMousePos();                     // Getting the coords of the mouse for buttonClick()
+        void buttonClick();                     // Checks to see if one of the calc GUI buttons has been clicked
+        void keyClick();                        // Looking for keyboard strokes like 1, +, etc.
+        // void checkRunningInput();               // Looks to see if the input is overflowing the screen, then adjusts it
+
         void updateScreen(std::string value);   // Put the argument on the screen         
         void update();                          // Changing things in the backend, will then be pushed to front with render
         

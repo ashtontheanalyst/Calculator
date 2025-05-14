@@ -60,44 +60,44 @@ void Calc::initButtons() {
     // Bottom Row
     buttons.emplace_back("0", buttonFont, buttonTexture, 13.f, 567.f, numButtonColor, white);             // first button, on far left
     buttons.emplace_back(".", buttonFont, buttonTexture, 96.f, 567.f, numButtonColor, white);
-    buttons.emplace_back("( - )", buttonFont, buttonTexture, 179.f, 567.f, numButtonColor, white);
+    buttons.emplace_back("'( - )", buttonFont, buttonTexture, 179.f, 567.f, numButtonColor, white);
     buttons.emplace_back("+", buttonFont, buttonTexture, 262.f, 567.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("[-EQL-]", buttonFont, buttonTexture, 345.f, 567.f, white, black);               // last button, on far right
+    buttons.emplace_back("'[-EQL-]", buttonFont, buttonTexture, 345.f, 567.f, white, black);               // last button, on far right
 
     // Second row from bottom
     buttons.emplace_back("1", buttonFont, buttonTexture, 13.f, 494.f, numButtonColor, white);
     buttons.emplace_back("2", buttonFont, buttonTexture, 96.f, 494.f, numButtonColor, white);
     buttons.emplace_back("3", buttonFont, buttonTexture, 179.f, 494.f, numButtonColor, white);
     buttons.emplace_back("-", buttonFont, buttonTexture, 262.f, 494.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("Ans", buttonFont, buttonTexture, 345.f, 494.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("'Ans", buttonFont, buttonTexture, 345.f, 494.f, buttonColor, buttonTextColor);
 
     // Third from bottom
     buttons.emplace_back("4", buttonFont, buttonTexture, 13.f, 421.f, numButtonColor, white);
     buttons.emplace_back("5", buttonFont, buttonTexture, 96.f, 421.f, numButtonColor, white);
     buttons.emplace_back("6", buttonFont, buttonTexture, 179.f, 421.f, numButtonColor, white);
-    buttons.emplace_back("x", buttonFont, buttonTexture, 262.f, 421.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("Del", buttonFont, buttonTexture, 345.f, 421.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("*", buttonFont, buttonTexture, 262.f, 421.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("'Del", buttonFont, buttonTexture, 345.f, 421.f, buttonColor, buttonTextColor);
 
     // Fourth from bottom
     buttons.emplace_back("7", buttonFont, buttonTexture, 13.f, 348.f, numButtonColor, white);
     buttons.emplace_back("8", buttonFont, buttonTexture, 96.f, 348.f, numButtonColor, white);
     buttons.emplace_back("9", buttonFont, buttonTexture, 179.f, 348.f, numButtonColor, white);
     buttons.emplace_back("/", buttonFont, buttonTexture, 262.f, 348.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("Clear", buttonFont, buttonTexture, 345.f, 348.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("'Clear", buttonFont, buttonTexture, 345.f, 348.f, buttonColor, buttonTextColor);
 
     // Fifth from bottom
-    buttons.emplace_back("sin", buttonFont, buttonTexture, 13.f, 275.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("cos", buttonFont, buttonTexture, 96.f, 275.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("tan", buttonFont, buttonTexture, 179.f, 275.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("log", buttonFont, buttonTexture, 262.f, 275.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("ln", buttonFont, buttonTexture, 345.f, 275.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("'sin", buttonFont, buttonTexture, 13.f, 275.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("'cos", buttonFont, buttonTexture, 96.f, 275.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("'tan", buttonFont, buttonTexture, 179.f, 275.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("'log", buttonFont, buttonTexture, 262.f, 275.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("'ln", buttonFont, buttonTexture, 345.f, 275.f, buttonColor, buttonTextColor);
 
     // Top row, sixth from bottom
-    buttons.emplace_back("sq", buttonFont, buttonTexture, 13.f, 202.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("pow", buttonFont, buttonTexture, 96.f, 202.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("sqrt", buttonFont, buttonTexture, 179.f, 202.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("abs", buttonFont, buttonTexture, 262.f, 202.f, buttonColor, buttonTextColor);
-    buttons.emplace_back("hash", buttonFont, buttonTexture, 345.f, 202.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("'sq", buttonFont, buttonTexture, 13.f, 202.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("'pow", buttonFont, buttonTexture, 96.f, 202.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("'sqrt", buttonFont, buttonTexture, 179.f, 202.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("'abs", buttonFont, buttonTexture, 262.f, 202.f, buttonColor, buttonTextColor);
+    buttons.emplace_back("'hash", buttonFont, buttonTexture, 345.f, 202.f, buttonColor, buttonTextColor);
 }
 
 
@@ -114,7 +114,7 @@ void Calc::initScreen() {
     // The screen itself, the background
     screen.setTexture(screenTexture);
     screen.setColor(black);
-    screen.setScale(1.0f, 0.55f);   // Turns the png from 256x256 to 399x126
+    screen.setScale(1.0f, 0.55f);                   // Turns the png from 256x256 to 399x126
     screen.setPosition(13.0, -7.0);
 
     // The text on the screen
@@ -122,7 +122,7 @@ void Calc::initScreen() {
     output.setPosition(sf::Vector2f(25.f, 0.f));    // There's already 20px of padding on the y-axis, so the actual pos. is (25, 20ish)
     output.setCharacterSize(60);
     output.setFillColor(outputColor);
-    output.setString("Welcome Nerd!");              // Intro message
+    output.setString("");                           // Intro message
 }
 
 
@@ -189,14 +189,14 @@ void Calc::pollEvents() {
 }
 
 
-// Get mouse pos coords
+// Get mouse pos coords for buttonClick()
 void Calc::getMousePos() {
     mousePosRaw = sf::Mouse::getPosition(*window);
     mousePos = window->mapPixelToCoords(mousePosRaw);
 }
 
 
-// flip button color if button has been clicked
+// See what button was clicked and return it's value
 void Calc::buttonClick() {
     // If left click...
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
@@ -211,10 +211,10 @@ void Calc::buttonClick() {
                 if (buttons[i].clicked(mousePos)) {
 
                     // get the value from the Buttons class
-                    std::string value = buttons[i].getValue();
+                    input = buttons[i].getValue();
 
-                    // Put that value into the update screen function
-                    updateScreen(value);
+                    // Put that the button value to input
+                    updateScreen(input);
                 }
             }
         }
@@ -225,9 +225,156 @@ void Calc::buttonClick() {
 }
 
 
+// Key presses, similar logic to buttonClick()
+void Calc::keyClick() {
+    // 0 - 9 and .
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num0)) {
+        // Make sure button is not being held, has to be indiv. click each time
+        if (!keyHeld) {
+            keyHeld = true;
+            // Assigns the string value "0" to the kyboard key 0
+            input = "0";
+            updateScreen(input);
+        }
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) {
+        if (!keyHeld) {
+            keyHeld = true;
+            input = "1";
+            updateScreen(input);
+        }
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) {
+        if (!keyHeld) {
+            keyHeld = true;
+            input = "2";
+            updateScreen(input);
+        }
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)) {
+        if (!keyHeld) {
+            keyHeld = true;
+            input = "3";
+            updateScreen(input);
+        }
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4)) {
+        if (!keyHeld) {
+            keyHeld = true;
+            input = "4";
+            updateScreen(input);
+        }
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num5)) {
+        if (!keyHeld) {
+            keyHeld = true;
+            input = "5";
+            updateScreen(input);
+        }
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num6)) {
+        if (!keyHeld) {
+            keyHeld = true;
+            input = "6";
+            updateScreen(input);
+        }
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num7)) {
+        if (!keyHeld) {
+            keyHeld = true;
+            input = "7";
+            updateScreen(input);
+        }
+    }
+    // multiply (this is above 8 because they both use the Num8 value)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) || sf::Keyboard::isKeyPressed(sf::Keyboard::RShift)) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num8)) {
+            if (keyHeld == false) {
+                keyHeld = true;
+                input = "*";
+                updateScreen(input);
+            }
+        }
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num8)) {
+        if (!keyHeld) {
+            keyHeld = true;
+            input = "8";
+            updateScreen(input);
+        }
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num9)) {
+        if (!keyHeld) {
+            keyHeld = true;
+            input = "9";
+            updateScreen(input);
+        }
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Period)) {
+        if (!keyHeld) {
+            keyHeld = true;
+            input = ".";
+            updateScreen(input);
+        }
+    }
+
+    // Math
+    // plus
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) || sf::Keyboard::isKeyPressed(sf::Keyboard::RShift)) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Equal)) {
+            if (keyHeld == false) {
+                keyHeld = true;
+                input = "+";
+                updateScreen(input);
+            }
+        }
+    }
+    // subtract
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Dash)) {
+        if (!keyHeld) {
+            keyHeld = true;
+            input = "-";
+            updateScreen(input);
+        }
+    }
+    // multiply - This is above the 8 key since they both use Num8 and it uses shift
+    // divide
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Slash)) {
+        if (!keyHeld) {
+            keyHeld = true;
+            input = "/";
+            updateScreen(input);
+        }
+    }
+
+    // Reset keyHeld
+    if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Num0) &&
+    !sf::Keyboard::isKeyPressed(sf::Keyboard::Num1) &&
+    !sf::Keyboard::isKeyPressed(sf::Keyboard::Num2) &&
+    !sf::Keyboard::isKeyPressed(sf::Keyboard::Num3) &&
+    !sf::Keyboard::isKeyPressed(sf::Keyboard::Num4) &&
+    !sf::Keyboard::isKeyPressed(sf::Keyboard::Num5) &&
+    !sf::Keyboard::isKeyPressed(sf::Keyboard::Num6) &&
+    !sf::Keyboard::isKeyPressed(sf::Keyboard::Num7) &&
+    !sf::Keyboard::isKeyPressed(sf::Keyboard::Num8) &&
+    !sf::Keyboard::isKeyPressed(sf::Keyboard::Num9) &&
+    !sf::Keyboard::isKeyPressed(sf::Keyboard::Period) &&
+    !sf::Keyboard::isKeyPressed(sf::Keyboard::Dash) &&
+    !sf::Keyboard::isKeyPressed(sf::Keyboard::Slash) &&
+    !sf::Keyboard::isKeyPressed(sf::Keyboard::Equal)) {
+    
+    keyHeld = false;
+    }
+}
+
+
 // This will put the passed argument onto the screen, the value in the button
-void Calc::updateScreen(std::string value) {
-    output.setString(value);
+void Calc::updateScreen(std::string input) {
+    runningInput = output.getString();                  // gets the most current string value from on screen
+    
+    runningInput += input;                              // add the new value to it
+    
+    output.setString(runningInput);                     // assigns output to the updated string
 }
 
 
@@ -236,6 +383,7 @@ void Calc::update() {
     pollEvents();
     getMousePos();
     buttonClick();
+    keyClick();
 }
 
 

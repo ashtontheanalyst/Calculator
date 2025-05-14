@@ -27,5 +27,5 @@ class Button {
         // Accessors
         sf::Color getColor() const;                         // gets the color of the button, for use in Calc.cpp
         std::string getValue() const;                       // gets the value of the button, for use in Calc.cpp
-        bool clicked(sf::Vector2f mousePos) const;          // Check to see if the mouse pos is over and button and it's been clicked
+        bool clicked(sf::Vector2f mousePos) const;          // Check to see if the mouse pos is inside the button and it's been clicked on
 };

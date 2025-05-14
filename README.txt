@@ -10,4 +10,5 @@ NOTES:
 
 
 CURRENT:
-   - We have output on the screen, it's static, and it's not in the right position
+   - 0-9, ., +, -, /, and * can all be clicked or key pressed to be put on screen
+   - Still not mathmatical functionality
